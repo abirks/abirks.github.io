@@ -1,7 +1,7 @@
 ---
 title: "Anders Birk Sørensen"
 about:
-  template: jolla
+  template: solana
   image: profile.jpg
   links:
     - icon: linkedin
@@ -9,22 +9,4 @@ about:
       href: https://www.linkedin.com/in/absoerensen/
 
 ---
-
-
-This is just a short
-
-## Experience
-
-Netcompany | Senior Architect | January 2023 - present
-Netcompany | Consultant | April 2021 - December 2022
-FGH | Lektor | August 2018 - July 2019
-FGH | Adjunkt | August 2012 - July 2018
-
-## Education
-
-Aalborg University | September 2009 - August 2011
-M.Sc, physics
-
-Aalborg University | September 2006 - June 2009
-B.Sc, physics and mathematics
 

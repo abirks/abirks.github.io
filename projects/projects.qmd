@@ -1,0 +1,35 @@
+---
+title: "A few of my projects"
+format: html
+---
+
+::: grid
+::: g-col-6
+## Advent of Code solutions
+
+Most of my solutions for Advent of Code are done in [Java](https://github.com/abirks/aoc_java). The problems from all years are collected in a single project with common utilities and testing.
+
+For 2020 they're in [LabVIEW](https://github.com/abirks/aoc20). Coincidentally, that's also the only year I've completed fully. The other years still have a couple of stars missing 😥.
+
+## Muon telescope
+
+Still in the planning phase
+
+:::
+
+::: g-col-6
+## Gamma spectrometer
+
+A simple gamme spectrometer using a LYSO crystal, a SIPM sensor and an oscilloscope. The goal was to make a minimum-effort scintillation detector without access to a proper lab.
+
+## Synacor challenge
+
+[Synacor](synacor/synacor.qmd)
+
+My solution to the synacor challenge. The 
+
+
+More text
+
+:::
+:::
