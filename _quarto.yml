@@ -1,8 +1,13 @@
 project:
   type: website
 
+execute:
+  freeze: auto
+  
 website:
   title: "abirks.github.io"
+  site-url: https://abirks.github.io
+  description: "x"
   navbar:
     right:
       - href: index.qmd
