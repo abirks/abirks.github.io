@@ -11,9 +11,9 @@ Most of my solutions for Advent of Code are done in [Java](https://github.com/ab
 
 For 2020 they're in [LabVIEW](https://github.com/abirks/aoc20). Coincidentally, that's also the only year I've completed fully. The other years still have a couple of stars missing 😥.
 
-## Muon telescope
+## Synacor challenge
 
-Still in the planning phase
+My solution to the [Synacor Challenge](synacor/synacor.qmd) by Eric Wastl. 
 
 :::
 
@@ -22,14 +22,10 @@ Still in the planning phase
 
 A simple gamme spectrometer using a LYSO crystal, a SIPM sensor and an oscilloscope. The goal was to make a minimum-effort scintillation detector without access to a proper lab.
 
-## Synacor challenge
+## Muon telescope
 
-[Synacor](synacor/synacor.qmd)
+Still in the planning phase
 
-My solution to the synacor challenge. The 
-
-
-More text
 
 :::
 :::

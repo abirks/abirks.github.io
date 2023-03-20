@@ -9,7 +9,7 @@ There are eight codes hidden throughout the challenge. Some of them er easy to f
 
 I completed most of the challenge using LabVIEW, but any programming language will do. For one part I also used a bit of Python.
 
-# Code 1: Reading the specs
+## Code 1: Reading the specs
 
 After signing up you're given a zip file with two files: arch-spec and challenge.bin. arch-spec gives the details needed to implement a virtual machine that can execute challenge.bin.
 
@@ -21,7 +21,7 @@ The first code is given directly in the hints section of the arch-spec document:
 - Here's a code for the challenge website: rUlMtCpeTmXE
 ```
 
-# Code 2: Getting started
+## Code 2: Getting started
 
 Building the virtual machine is similar to the problem on [day 8 of the 2020 AoC](https://adventofcode.com/2020/day/8).
 
@@ -35,7 +35,7 @@ The spec document suggests starting with instructions 0 (halt), 19 (out) and 21 
 
 ![](synacor-code2.jpg)
 
-# Code 3: Finishing the virtual machine
+## Code 3: Finishing the virtual machine
 
 After that, it's on to implement the rest of the instructions. The self-test routine will verify that all instructions work as intended. If there's an error, it will tell you at which operation it failed. Very helpful for debugging.
 
@@ -45,13 +45,13 @@ The third code is printed after the self-test completes successfully:
 
 ![](synacor-code3.jpg)
 
-# Code 4: The Tablet
+## Code 4: The Tablet
 
 After booting up the machine, you're presented with a text-based dungeon crawler game. The very first room contains a tablet. Picking it up and using it in-game yields the fourth code.
 
 ![](synacor-code4.jpg)
 
-# Code 5: The Twisting Passages
+## Code 5: The Twisting Passages
 
 The maze can be solved by navigating the rooms in a specific order. I could tell that some of the passages ran in loops, but I didn't consider that going backwards might not send you back to where you came from. That turned out to be the key to navigate the maze without editing memory, but I didn't realize it until after I'd completed the problem.
 
@@ -65,7 +65,7 @@ The largest Room ID I found was 2407. Setting the value of address 2732 and 2733
 
 It's also possible to reach the room with the code by moving west-south-north after going down the ladder. That would have been easier but I didn't realize until I had found the code.
 
-# Code 6: The Ruins
+## Code 6: The Ruins
 
 Using the oil can and lighting the lamp let me go through the dark passage west of the ladder to the twisting passages. There's a castle at the end with six coins scattered around. Each coin has a number on it, and the central room in the castle has an equation written on the wall:
 
@@ -82,7 +82,7 @@ With six coins there are $6!=720$ possible arrangements. I wrote a quick program
 
 Solving the puzzle opens the last door, giving access to a room with a teleporter. Activating the teleporter for the first time gives the sixth code before sending you to the Synacor HQ.
 
-# Code 7: The Teleporter
+## Code 7: The Teleporter
 
 Reactivating the teleporter without doing anything else simply lands you back at Synacor HQ. There is a book here that tells you to change the eight register. Activating the teleporter with a nonzero value in the eight register starts a long calibration routine.
 
@@ -111,11 +111,11 @@ Before moving on, I had to program a disassembler to make the code human readabl
   6067 ret                              // Return
 ```
 
-## First attempt: Just skip the calculation
+### First attempt: Just skip the calculation
 
 The calibration routine can be bypassed by overwriting the first operation (6027) with a ret operation. The calculation stops, but the teleportation is aborted.
 
-## Second attempt: Skip the return value check
+### Second attempt: Skip the return value check
 
 After the calibration routine returns, there is a check for the correct value in reg0:
 
@@ -142,11 +142,11 @@ The value check can by bypassed by either setting `reg0=6` manually, or by simpl
 
 This finally activates the teleporter and puts you on a tropical beach with a new code written in the sand. Unfortunately, the code is invalid 😥
 
-## Third attempt: Finding the correct value
+### Third attempt: Finding the correct value
 
 The book on teleportation actually gives instructions on how to solve this thing. Looks like there's no quick bypass. - reimplement the code on more powerful hardware and optimize it - determine the correct value for reg7 - set the register to that value and activate the teleporter - bypass the confirmation mechanism
 
-### First implementation
+#### First implementation
 
 Here's a direct implementation of the calibration code in Python. The memoization decorator is from the [Python Decorator Library](https://wiki.python.org/moin/PythonDecoratorLibrary#Memoize).
 
@@ -165,7 +165,7 @@ def f(r0,r1,r7):
 
 The above code does give correct results for small values of $r_0$ and $r_1$, but it quickly runs out of room for recursion.
 
-### Optimization
+#### Optimization
 
 This was by far the most difficult part of the challenge.
 
@@ -249,7 +249,7 @@ def f(r0,r1,r7):
     return f(r0-1, r1, r7)
 ```
 
-### Calculating the correct value
+#### Calculating the correct value
 Running the function for every possible value of $r_7$ took 1 minute 58 seconds and produced one solution:
 
 ``` default
@@ -258,7 +258,7 @@ f(4,1,25734) = 6
 
 So register 8 has to be 25734 for the teleporter to work.
 
-### Finished at last
+#### Finished at last
 To set the registers correctly and skip the calibration, I made these changes to the program in memory:
 
 ``` default
@@ -275,7 +275,7 @@ This changes the eight register to the correct value and overwrites part of the 
 
 Using the teleporter afterwards lands us back on the beach with a new code in the sand. A working one, this time!
 
-# Code 8: The Orb
+## Code 8: The Orb
 
 This one was a breeze after the teleporter.
 
@@ -303,7 +303,7 @@ The vault opens and there's a mirror inside. I have a code written on my forehea
 
 ![](synacor-code8.jpg)
 
-# Closing thoughts
+## Closing thoughts
 
 There were a lot of elements to this challenge, but implementing the VM was the most fun. It's similar to the Intcode puzzles in [Advent of Code 2019](https://adventofcode.com/2019), but where those puzzles had you use the VM as a tool to solve problems, the problems in this challenge were inside the program itself. It was a nice surprise to find a functioning dungeon crawler game once the machine was running.
 
@@ -311,7 +311,7 @@ I'm dissappointed that I had to go and look for a hint for the teleporter portio
 
 Nonetheless it was a great challenge and I had a lot of fun with it.
 
-## My codes
+### My codes
 
 These are my codes. They won't work for anyone else.
 

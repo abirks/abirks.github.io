@@ -2,6 +2,6 @@
 title: "abirks.github.io"
 ---
 
-This is a Quarto website.
+So far there's not much content here. It'll become my personal website at some point.
 
 To learn more about Quarto websites visit <https://quarto.org/docs/websites>.

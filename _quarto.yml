@@ -5,9 +5,9 @@ execute:
   freeze: auto
   
 website:
-  title: "abirks.github.io"
+  title: "Work in progress"
   site-url: https://abirks.github.io
-  description: "x"
+  description: "abirks.github.io"
   navbar:
     right:
       - href: index.qmd
@@ -27,6 +27,3 @@ format:
     theme: cosmo
     css: styles.css
     toc: true
-
-
-
