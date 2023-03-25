@@ -1,0 +1,114 @@
+[
+  {
+    "objectID": "d6a5af49/about.html",
+    "href": "d6a5af49/about.html",
+    "title": "Anders Birk Sørensen",
+    "section": "",
+    "text": "This is just a short"
+  },
+  {
+    "objectID": "d6a5af49/about.html#experience",
+    "href": "d6a5af49/about.html#experience",
+    "title": "Anders Birk Sørensen",
+    "section": "Experience",
+    "text": "Experience\nNetcompany | Senior Architect | January 2023 - present Netcompany | Consultant | April 2021 - December 2022 FGH | Lektor | August 2018 - July 2019 FGH | Adjunkt | August 2012 - July 2018"
+  },
+  {
+    "objectID": "d6a5af49/about.html#education",
+    "href": "d6a5af49/about.html#education",
+    "title": "Anders Birk Sørensen",
+    "section": "Education",
+    "text": "Education\nAalborg University | September 2009 - August 2011 M.Sc, physics\nAalborg University | September 2006 - June 2009 B.Sc, physics and mathematics"
+  },
+  {
+    "objectID": "d6a5af49/index.html",
+    "href": "d6a5af49/index.html",
+    "title": "abirks.github.io",
+    "section": "",
+    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "abirks.github.io",
+    "section": "",
+    "text": "So far there’s not much content here. It’ll become my personal website at some point.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+  },
+  {
+    "objectID": "projects/projects.html",
+    "href": "projects/projects.html",
+    "title": "A few of my projects",
+    "section": "",
+    "text": "Most of my solutions for Advent of Code are done in Java. The problems from all years are collected in a single project with common utilities and testing.\nFor 2020 they’re in LabVIEW. Coincidentally, that’s also the only year I’ve completed fully. The other years still have a couple of stars missing 😥.\n\n\n\nMy solution to the Synacor Challenge by Eric Wastl.\n\n\n\n\n\nA simple gamme spectrometer using a LYSO crystal, a SIPM sensor and an oscilloscope. The goal was to make a minimum-effort scintillation detector without access to a proper lab.\n\n\n\nStill in the planning phase"
+  },
+  {
+    "objectID": "projects/synacor/synacor.html",
+    "href": "projects/synacor/synacor.html",
+    "title": "Synacor Challenge notes",
+    "section": "",
+    "text": "The Synacor Challenge is a programming challenge by Eric Wastl. I found it on the Advent of Code subreddit after completing the Advent of Code 2020.\nThere are eight codes hidden throughout the challenge. Some of them er easy to find - others take some head-scratching. After finding them, they can be entered into the challenge website. They’re individually generated for each participant so the codes I list here won’t work for anyone else. The solutions are the same, though, so beware of spoilers!\nI completed most of the challenge using LabVIEW, but any programming language will do. For one part I also used a bit of Python."
+  },
+  {
+    "objectID": "projects/synacor/synacor.html#code-1-reading-the-specs",
+    "href": "projects/synacor/synacor.html#code-1-reading-the-specs",
+    "title": "Synacor Challenge notes",
+    "section": "Code 1: Reading the specs",
+    "text": "Code 1: Reading the specs\nAfter signing up you’re given a zip file with two files: arch-spec and challenge.bin. arch-spec gives the details needed to implement a virtual machine that can execute challenge.bin.\nThe first code is given directly in the hints section of the arch-spec document:\n== hints ==\n- Start with operations 0, 19, and 21.\n- Here's a code for the challenge website: rUlMtCpeTmXE"
+  },
+  {
+    "objectID": "projects/synacor/synacor.html#code-2-getting-started",
+    "href": "projects/synacor/synacor.html#code-2-getting-started",
+    "title": "Synacor Challenge notes",
+    "section": "Code 2: Getting started",
+    "text": "Code 2: Getting started\nBuilding the virtual machine is similar to the problem on day 8 of the 2020 AoC.\nThe VM consists of two loops: An execution loop that executes the program in challenge.bin, and an event handler loop that takes input from the user interface and passes it on to the execution loop.\n\nUser text input is passed through a shared queue. The event handler queues the input bytes, and the input operation dequeues them one at a time. The other user controls (Save, Load, Write) change the state of the execution loop. Eg. clicking the Save button puts the execution loop into a Save state which saves the current machine state (memory contents, registers, stack, execution pointer, output buffer) to a file before returning to the Execution state. The state change is passed via a Tag channel. Another Tag channel is used to stop the event handler when a Halt operation is encountered.\nThe spec document suggests starting with instructions 0 (halt), 19 (out) and 21 (noop). Implementing just these three and executing prints this on the display:"
+  },
+  {
+    "objectID": "projects/synacor/synacor.html#code-3-finishing-the-virtual-machine",
+    "href": "projects/synacor/synacor.html#code-3-finishing-the-virtual-machine",
+    "title": "Synacor Challenge notes",
+    "section": "Code 3: Finishing the virtual machine",
+    "text": "Code 3: Finishing the virtual machine\nAfter that, it’s on to implement the rest of the instructions. The self-test routine will verify that all instructions work as intended. If there’s an error, it will tell you at which operation it failed. Very helpful for debugging.\nThe end of the self-test is a very long calculation that, for me, didn’t fail until the very end. My virtual machine isn’t the fastest which meant there was a bit of a wait before the failure. This lead me to implement functions for saving and loading the state of the VM. That also came in handy later on to skip over already solved puzzles.\nThe third code is printed after the self-test completes successfully:"
+  },
+  {
+    "objectID": "projects/synacor/synacor.html#code-4-the-tablet",
+    "href": "projects/synacor/synacor.html#code-4-the-tablet",
+    "title": "Synacor Challenge notes",
+    "section": "Code 4: The Tablet",
+    "text": "Code 4: The Tablet\nAfter booting up the machine, you’re presented with a text-based dungeon crawler game. The very first room contains a tablet. Picking it up and using it in-game yields the fourth code."
+  },
+  {
+    "objectID": "projects/synacor/synacor.html#code-5-the-twisting-passages",
+    "href": "projects/synacor/synacor.html#code-5-the-twisting-passages",
+    "title": "Synacor Challenge notes",
+    "section": "Code 5: The Twisting Passages",
+    "text": "Code 5: The Twisting Passages\nThe maze can be solved by navigating the rooms in a specific order. I could tell that some of the passages ran in loops, but I didn’t consider that going backwards might not send you back to where you came from. That turned out to be the key to navigate the maze without editing memory, but I didn’t realize it until after I’d completed the problem.\nInstead I monitored the memory calls made while moving around to identify which addresses were involved in the maze logic. After monitoring those address’ contents, I found that addresses 2732 and 2733 contain a unique ID for each room, and that these IDs all have a numerical difference of 5.\n\nThe largest Room ID I found was 2407. Setting the value of address 2732 and 2733 to 2417 and entering the “look” command put me in a room with the fifth code and an oil can.\n\nIt’s also possible to reach the room with the code by moving west-south-north after going down the ladder. That would have been easier but I didn’t realize until I had found the code."
+  },
+  {
+    "objectID": "projects/synacor/synacor.html#code-6-the-ruins",
+    "href": "projects/synacor/synacor.html#code-6-the-ruins",
+    "title": "Synacor Challenge notes",
+    "section": "Code 6: The Ruins",
+    "text": "Code 6: The Ruins\nUsing the oil can and lighting the lamp let me go through the dark passage west of the ladder to the twisting passages. There’s a castle at the end with six coins scattered around. Each coin has a number on it, and the central room in the castle has an equation written on the wall:\n  _ + _ * _^2 + _^3 - _ = 399\nWith six coins there are \\(6!=720\\) possible arrangements. I wrote a quick program to run through the possible permutations of the coins to find the right combination:\n    9  +  2  *   5^2  +   7^3   -     3    = 399\n  blue   red   shiny    concave   corroded\nSolving the puzzle opens the last door, giving access to a room with a teleporter. Activating the teleporter for the first time gives the sixth code before sending you to the Synacor HQ."
+  },
+  {
+    "objectID": "projects/synacor/synacor.html#code-7-the-teleporter",
+    "href": "projects/synacor/synacor.html#code-7-the-teleporter",
+    "title": "Synacor Challenge notes",
+    "section": "Code 7: The Teleporter",
+    "text": "Code 7: The Teleporter\nReactivating the teleporter without doing anything else simply lands you back at Synacor HQ. There is a book here that tells you to change the eight register. Activating the teleporter with a nonzero value in the eight register starts a long calibration routine.\nBefore moving on, I had to program a disassembler to make the code human readable (slightly less unreadable than before). Monitoring the calls made by the program led me to the calibration routine itself:\n  Teleporter calibration routine:\n  \n  6027 jt   reg0  6035                  // Jump to 6035 if reg0!=0\n  6030 add  reg0  reg1     1\n  6034 ret                              // Return\n  \n  6035 jt   reg1  6048                  // Jump to 6048 if reg1!=0\n  6038 add  reg0  reg0 32767\n  6042 set  reg1  reg7\n  6045 call 6027                        // Recursion\n  6047 ret                              // Return\n  \n  6048 push reg0\n  6050 add  reg1  reg1 32767\n  6054 call 6027                        // Recursion\n  6056 set  reg1  reg0\n  6059 pop  reg0\n  6061 add  reg0  reg0 32767\n  6065 call 6027                        // Recursion\n  6067 ret                              // Return\n\nFirst attempt: Just skip the calculation\nThe calibration routine can be bypassed by overwriting the first operation (6027) with a ret operation. The calculation stops, but the teleportation is aborted.\n\n\nSecond attempt: Skip the return value check\nAfter the calibration routine returns, there is a check for the correct value in reg0:\n  5489 call 6027                        // Call check code\n  5491 eq   reg1  reg0     6            // Set reg1=1 if reg0=6\n  5495 jf   reg1  5579                  // Jump to 5579 if reg1=0 (ie. if reg0 != 6). This happens if reg7 is wrong. \n  5498 push reg0                        // Save reg0, 1 and 2\n  5500 push reg1      \n  5502 push reg2      \n  5504 set  reg0 29014                  // Set new values\n  5507 set  reg1  1531\n  5510 add  reg2 16218  5646\n  5514 call 1458                        // This is the one we want to call!\nThe value check can by bypassed by either setting reg0=6 manually, or by simply replacing the whole check section with noops:\n  5489 noop\n  ...\n  5497 noop\nThis finally activates the teleporter and puts you on a tropical beach with a new code written in the sand. Unfortunately, the code is invalid 😥\n\n\nThird attempt: Finding the correct value\nThe book on teleportation actually gives instructions on how to solve this thing. Looks like there’s no quick bypass. - reimplement the code on more powerful hardware and optimize it - determine the correct value for reg7 - set the register to that value and activate the teleporter - bypass the confirmation mechanism\n\nFirst implementation\nHere’s a direct implementation of the calibration code in Python. The memoization decorator is from the Python Decorator Library.\n@memoized\ndef f(r0,r1,r7):\n    if r0 == 0:\n        return (r1 + 1) % 32768, r1, r7\n    \n    if r1 == 0:\n        return f(r0-1, r7, r7)\n    \n    r1,_,_ = f(r0, r1-1, r7)\n    return f(r0-1, r1, r7)\nThe above code does give correct results for small values of \\(r_0\\) and \\(r_1\\), but it quickly runs out of room for recursion.\n\n\nOptimization\nThis was by far the most difficult part of the challenge.\nThe calibration routing is called with arguments \\(r_0 = 4\\) and \\(r_1 = 1\\), and only \\(r_0\\) is used to return a result. The routing must return a value of 6 to pass the value check that follows. Unfortunately, these arguments lead to too many levels of recursion to calculate easily.\nI tried looking into the Ackermann function, of which this seems to be a variant, but with no luck. Eventually I had to go and look for hints online. Dmitry Panin’s writeup had the answer. It turns out the above algorithm can be reduced algebraically. Here’s my own derivation:\n\\[\n\\begin{align*}\n    f(r_0,r_1,r_7) &= \\begin{cases}\n                          (r_1+1) \\bmod 2^{15}             & \\text{if } r_0 = 0 \\\\\n                          f(r_0-1, r_7, r_7)               & \\text{if } r_1 = 1 \\\\\n                          f(r_0-1, f(r_0,r_1-1,r_7), r_7)  & \\text{otherwise}\n                      \\end{cases}\n\\end{align*}\n\\] \\[    \n\\begin{align*}\n    &f(0,r_1,r_7) = r_1+1 \\\\\n    \\\\\n    &f(1,0,r_7)   = f(0,r_7,r_7)          = r_7+1 \\\\\n    &f(1,1,r_7)   = f(0, f(1,0,r_7), r_7) = f(0, r_7+1, r_7) = (r_7+1)+1\\\\\n    &f(1,2,r_7)   = f(0, f(1,1,r_7), r_7) = f(0, r_7+2, r_7) = (r_7+1)+2 \\\\\n    &f(1,r_1,r_7) = f(0, f(1,r_1-1,r_7), r_7) = (r_7+1)+r_1 \\\\\n    \\\\\n    &f(2,0,r_7)   = f(1, r_7, r_7) = 2 \\, r_7 + 1 \\\\\n    &f(2,1,r_7)   = f(1, f(2,0,r_7), r_7) = f(1, 2 \\, r_7+1, r_7) = (r_7+1) + (2 \\, r_7+1) \\\\\n    &f(2,2,r_7)   = f(1, f(2,1,r_7), r_7) = f(1, (r_7+1) + (2 \\, r_7+1), r_7) = (r_7+1)+(r_7+1) + (2 \\, r_7+1) \\\\\n    &f(2,r_1,r_7) = r_1 \\cdot (r_7+1) + (2 \\, r_7+1) \\\\\n    \\\\\n    &f(3,0,r_7)   = f(2, r_7, r_7) = r_7 \\cdot (r_7+1) + (2 \\, r_7+1) \\\\\n    &f(3,1,r_7)   = f(2, f(3, 0, r_7), r_7) = f(3, 0, r_7) \\cdot (r_7+1) + (2 \\, r_7+1) \\\\\n    &f(3,r_1,r_7)   = f(2, f(3, r_1-1, r_7), r_7) = f(3, r_1-1, r_7) \\cdot (r_7+1) + (2 \\, r_7+1) \\\\\n\\end{align*}\n\\] \\[\n\\begin{align*}\n    \\boxed{f(3,r_1,r_7) = f(3, r_1-1, r_7) \\cdot (r_7+1) + (2 \\, r_7+1)}\n\\end{align*}\n\\]\nThe operations are all \\(\\bmod 2^{15}\\), but I only wrote it out in the function definition. (And yes, a lot of those parenthesis are redundant - they help me keep track of the terms.)\nTo check for mistakes along the way, I cross checked the formulas against the recursive function. They checked out until I could no longer run the recursion to check.\nThe last line can be rewritten to include a geometric series: \\[\n\\begin{align*}\n    a_n :=& f(3,n,r_7) \\\\\n    a_0 =& {r_7}^2 + 3\\,r_7 + 1 \\\\\n    a_1 =& a_0\\, k + j \\qquad , \\qquad k=r_7+1, j=2\\,r_7+1 \\\\\n    a_2 =& a_1\\, k + j = a_0\\,k^2 + k\\,j + j \\\\\n    a_3 =& a_2\\, k + j = a_0\\,k^3 + k^2\\,j + k\\,j + j \\\\\n    a_n =& a_0 \\, k^n + \\sum_{i=0}^{n-1} j\\,k^i\n\\end{align*}\n\\]\nI tried reducing it further, but it didn’t work. Instead I added a loop to calculate \\(f(3, r_1, r_7)\\) for a given value of \\(r_1\\). Adding the loop puts a limit on the recursion depth since \\(r_0 \\leq 4\\) for all calls, and the function will no longer recurse for \\(r_0 \\leq 3\\).\nThe finished code now looks like this:\n@memoized\ndef f(r0,r1,r7):\n    # Python code for 6027 routine\n\n    # Optimized function for f(3,r1,r7)\n    if r0 == 3:\n        last = (r7 * (r7+1) + 2*r7 + 1)%32768\n        for i in range(1,r1+1):\n            last = ( last*(r7+1) + 2*r7 + 1 )%32768\n        return last,0,0\n\n    # f(0, r1, r7) -> r0 = r1+1\n    if r0 == 0:\n        return (r1+1)%32768, r1, r7\n\n    # f(r0, 0, r7) -> f(r0-1, r7, r7)\n    if r1 == 0:\n        return f(r0-1, r7, r7)\n\n    # f(r0, r1, r7) -> f(r0-1, f(r0, r1-1, r7), r7)\n    r1,_,_ = f(r0, r1-1, r7)\n    return f(r0-1, r1, r7)\n\n\nCalculating the correct value\nRunning the function for every possible value of \\(r_7\\) took 1 minute 58 seconds and produced one solution:\nf(4,1,25734) = 6\nSo register 8 has to be 25734 for the teleporter to work.\n\n\nFinished at last\nTo set the registers correctly and skip the calibration, I made these changes to the program in memory:\n   Addr      Val\n  --------------\n  32775    25734    // Change reg7 to 25734\n   6027        1    // set reg0 6\n   6028    32768\n   6029        6\n   6030       18    // ret\nThis changes the eight register to the correct value and overwrites part of the calibration code to simply return \\(r_0=6\\).\nUsing the teleporter afterwards lands us back on the beach with a new code in the sand. A working one, this time!"
+  },
+  {
+    "objectID": "projects/synacor/synacor.html#code-8-the-orb",
+    "href": "projects/synacor/synacor.html#code-8-the-orb",
+    "title": "Synacor Challenge notes",
+    "section": "Code 8: The Orb",
+    "text": "Code 8: The Orb\nThis one was a breeze after the teleporter.\nThe path leads to the final puzzle. The first room contains an orb that changes weight as you move around with it. Half of the rooms have an assigned number while the others have signs (+, - and *). Going from one numbered room to another changes the orb’s weight according to the path taken:\n\nThe goal is to reach the vault via a path that leaves the orb with a weight of 30. The path must be as short as possible and cannot return to the starting room (the orb evaporates if we return). Since we’re looking for the shortest/fastest path, a Breadth-first search works well.\nHere’s the search algorithm in pseudo-code:\nLoop while a solution is not found\n  For each search branch\n    For each possible next move\n      if weight>0 AND next!=22 AND next is not a repeat:\n        Generate a new search branch\nThe actual implementation is included in the LabVIEW project.\nThe solution is \\(22 + 4b - 11 * 4b - 18 - 11 - 1\\). Note that while this path does go through the same room more than once, the orb’s weight is different each time and it is not considered a repeat.\nThe vault opens and there’s a mirror inside. I have a code written on my forehead but it’s mirrored. Reversing the order and replacing q with p gives me the last code."
+  },
+  {
+    "objectID": "projects/synacor/synacor.html#closing-thoughts",
+    "href": "projects/synacor/synacor.html#closing-thoughts",
+    "title": "Synacor Challenge notes",
+    "section": "Closing thoughts",
+    "text": "Closing thoughts\nThere were a lot of elements to this challenge, but implementing the VM was the most fun. It’s similar to the Intcode puzzles in Advent of Code 2019, but where those puzzles had you use the VM as a tool to solve problems, the problems in this challenge were inside the program itself. It was a nice surprise to find a functioning dungeon crawler game once the machine was running.\nI’m dissappointed that I had to go and look for a hint for the teleporter portion. I did all the math and programming on my own, but it would have felt better if I got through without any help at all.\nNonetheless it was a great challenge and I had a lot of fun with it.\n\nMy codes\nThese are my codes. They won’t work for anyone else.\n\nCode 1: rUlMtCpeTmXE\nCode 2: OelXfeAkndFI\nCode 3: lYYmNpvGaQPL\nCode 4: CbYTAdYJexqf\nCode 5: JziacjPZcQSp\nCode 6: DolCjQdinctm\nCode 7: cuuxffSUoLBZ\nCode 8: WxHpoIOAMOV8"
+  }
+]
