@@ -7,11 +7,14 @@ on:
 
 name: Quarto Publish
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
@@ -21,8 +24,6 @@ jobs:
 
       - name: Publish to GitHub Pages (and render)
         uses: quarto-dev/quarto-actions/render@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
