@@ -18,7 +18,7 @@ You can also include more complex inline expressions like this: \( \int_{a}^{b} 
 Now, let's include some display math. The quadratic formula is:
 
 $$
-x = \frac{{-b \pm \sqrt{{b^2 - 4ac}}}}{{2a}}
+x = \frac{ -b \pm \sqrt{ {b^2 - 4ac} }{ 2a }
 $$
 
 Another example is the Euler's formula:

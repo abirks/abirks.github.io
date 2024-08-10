@@ -174,15 +174,14 @@ The calibration routing is called with arguments $r_0 = 4$ and $r_1 = 1$, and on
 I tried looking into the Ackermann function, of which this seems to be a variant, but with no luck. Eventually I had to go and look for hints online. [Dmitry Panin's writeup](http://pankdm.github.io/synacor-challenge.html) had the answer. It turns out the above algorithm can be reduced algebraically. Here's my own derivation:
 
 $$
-\begin{align*}
+\begin{aligned}
     f(r_0,r_1,r_7) &= \begin{cases} 
                           (r_1+1) \bmod 2^{15}             & \text{if } r_0 = 0 \\
                           f(r_0-1, r_7, r_7)               & \text{if } r_1 = 1 \\
                           f(r_0-1, f(r_0,r_1-1,r_7), r_7)  & \text{otherwise}
                       \end{cases}
-\end{align*}
-$$ $$    
-\begin{align*}
+\end{aligned}
+\begin{aligned}
     &f(0,r_1,r_7) = r_1+1 \\
     \\
     &f(1,0,r_7)   = f(0,r_7,r_7)          = r_7+1 \\
@@ -198,26 +197,26 @@ $$ $$
     &f(3,0,r_7)   = f(2, r_7, r_7) = r_7 \cdot (r_7+1) + (2 \, r_7+1) \\
     &f(3,1,r_7)   = f(2, f(3, 0, r_7), r_7) = f(3, 0, r_7) \cdot (r_7+1) + (2 \, r_7+1) \\
     &f(3,r_1,r_7)   = f(2, f(3, r_1-1, r_7), r_7) = f(3, r_1-1, r_7) \cdot (r_7+1) + (2 \, r_7+1) \\
-\end{align*}
-$$ $$
-\begin{align*}
+\end{aligned}
+\begin{aligned}
     \boxed{f(3,r_1,r_7) = f(3, r_1-1, r_7) \cdot (r_7+1) + (2 \, r_7+1)}
-\end{align*}
+\end{aligned}
 $$
 
 The operations are all $\bmod 2^{15}$, but I only wrote it out in the function definition. (And yes, a lot of those parenthesis are redundant - they help me keep track of the terms.)
 
 To check for mistakes along the way, I cross checked the formulas against the recursive function. They checked out until I could no longer run the recursion to check.
 
-The last line can be rewritten to include a geometric series: $$
-\begin{align*}
+The last line can be rewritten to include a geometric series: 
+$$
+\begin{aligned}
     a_n :=& f(3,n,r_7) \\
     a_0 =& {r_7}^2 + 3\,r_7 + 1 \\
     a_1 =& a_0\, k + j \qquad , \qquad k=r_7+1, j=2\,r_7+1 \\
     a_2 =& a_1\, k + j = a_0\,k^2 + k\,j + j \\
     a_3 =& a_2\, k + j = a_0\,k^3 + k^2\,j + k\,j + j \\
     a_n =& a_0 \, k^n + \sum_{i=0}^{n-1} j\,k^i
-\end{align*}
+\end{aligned}
 $$
 
 I tried reducing it further, but it didn't work. Instead I added a loop to calculate $f(3, r_1, r_7)$ for a given value of $r_1$. Adding the loop puts a limit on the recursion depth since $r_0 \leq 4$ for all calls, and the function will no longer recurse for $r_0 \leq 3$.
