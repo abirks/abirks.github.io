@@ -150,7 +150,7 @@ The book on teleportation actually gives instructions on how to solve this thing
 
 Here's a direct implementation of the calibration code in Python. The memoization decorator is from the [Python Decorator Library](https://wiki.python.org/moin/PythonDecoratorLibrary#Memoize).
 
-``` default
+``` Python
 @memoized
 def f(r0,r1,r7):
     if r0 == 0:
@@ -223,7 +223,7 @@ I tried reducing it further, but it didn't work. Instead I added a loop to calcu
 
 The finished code now looks like this:
 
-``` default
+``` Python
 @memoized
 def f(r0,r1,r7):
     # Python code for 6027 routine
