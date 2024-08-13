@@ -53,6 +53,7 @@ After booting up the machine, you're presented with a text-based dungeon crawler
 
 ## Code 5: The Twisting Passages
 
+The first real puzzle is a maze. Each room has corridors leading to and from them, but the maze is 
 The maze can be solved by navigating the rooms in a specific order. I could tell that some of the passages ran in loops, but I didn't consider that going backwards might not send you back to where you came from. That turned out to be the key to navigate the maze without editing memory, but I didn't realize it until after I'd completed the problem.
 
 Instead I monitored the memory calls made while moving around to identify which addresses were involved in the maze logic. After monitoring those address' contents, I found that addresses 2732 and 2733 contain a unique ID for each room, and that these IDs all have a numerical difference of 5.
@@ -171,7 +172,7 @@ This was by far the most difficult part of the challenge.
 
 The calibration routing is called with arguments $r_0 = 4$ and $r_1 = 1$, and only $r_0$ is used to return a result. The routing must return a value of 6 to pass the value check that follows. Unfortunately, these arguments lead to too many levels of recursion to calculate easily.
 
-I tried looking into the Ackermann function, of which this seems to be a variant, but with no luck. Eventually I had to go and look for hints online. [Dmitry Panin's writeup](http://pankdm.github.io/synacor-challenge.html) had the answer. It turns out the above algorithm can be reduced algebraically. Here's my own derivation:
+I tried looking into the Ackermann function, of which this seems to be a variant, but with no luck. Eventually I had to go and look for hints online. [Dmitry Panin's writeup](http://pankdm.github.io/synacor-challenge.html) had the answer. It turns out the above algorithm can be reduced algebraically:
 
 $$
 \begin{aligned}
@@ -181,6 +182,9 @@ $$
                           f(r_0-1, f(r_0,r_1-1,r_7), r_7)  & \text{otherwise}
                       \end{cases}
 \end{aligned}
+$$
+
+$$
 \begin{aligned}
     &f(0,r_1,r_7) = r_1+1 \\
     \\
@@ -198,6 +202,9 @@ $$
     &f(3,1,r_7)   = f(2, f(3, 0, r_7), r_7) = f(3, 0, r_7) \cdot (r_7+1) + (2 \, r_7+1) \\
     &f(3,r_1,r_7)   = f(2, f(3, r_1-1, r_7), r_7) = f(3, r_1-1, r_7) \cdot (r_7+1) + (2 \, r_7+1) \\
 \end{aligned}
+$$
+
+$$
 \begin{aligned}
     \boxed{f(3,r_1,r_7) = f(3, r_1-1, r_7) \cdot (r_7+1) + (2 \, r_7+1)}
 \end{aligned}
@@ -208,6 +215,7 @@ The operations are all $\bmod 2^{15}$, but I only wrote it out in the function d
 To check for mistakes along the way, I cross checked the formulas against the recursive function. They checked out until I could no longer run the recursion to check.
 
 The last line can be rewritten to include a geometric series: 
+
 $$
 \begin{aligned}
     a_n :=& f(3,n,r_7) \\
