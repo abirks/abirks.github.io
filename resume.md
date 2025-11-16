@@ -18,11 +18,11 @@ Software engineer with 4 years of experience building IT systems within the Dani
 ---
 
 ## Skills / Tech Stack
-**Languages:** Java, SQL, (TypeScript)
-**Frameworks:** Spring, Apache Camel, (React)
-**Databases:** Oracle, PostgreSQL  
-**Containerization:** Docker, Kubernetes  
-**Other:** SOAP/REST APIs, Jira/Confluence, GitHub
+- **Languages:** Java, SQL, (TypeScript)
+- **Frameworks:** Spring, Apache Camel, (React)
+- **Databases:** Oracle, PostgreSQL  
+- **Containerization:** Docker, Kubernetes  
+- **Other:** SOAP/REST APIs, Jira/Confluence, GitHub
 
 ---
 
